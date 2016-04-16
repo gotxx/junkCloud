@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
-	// sass = require('gulp-compass'),
-	compass = require('gulp-compass');
+	// sass = require('gulp-sass'),
+	compass = require('gulp-compass')
+	useref = require('gulp-useref'),
+	browserSync = require('browser-sync').create();
 
 // sass tasks
 /*gulp.task('sass', function() {
@@ -17,10 +19,30 @@ gulp.task('compass', function() {
       css: 'app/assets/css',
       sass: 'app/assets/scss'
     }))
-    .pipe(gulp.dest('app/assets/temp'));
+    .pipe(gulp.dest('app/assets/temp'))
+    .pipe(browserSync.reload({
+    	stream: true
+    }));
 });
 
 //compass watch task
-gulp.task('watch', function() {
+gulp.task('watch', ['browserSync','compass'], function() {
 	gulp.watch('app/assets/scss/**/*.scss', ['compass']); 
+	gulp.watch('app/*.html', browserSync.reload); 
+	gulp.watch('app/assets/js/**/*.js', browserSync.reload);
+});
+
+
+gulp.task('browserSync', function() {
+	browserSync.init({
+		server: {
+			baseDir: 'app'
+		},
+	});
+});
+
+gulp.task('useref', function() {
+	return gulp.src('app/*.html')
+		.pipe(useref())
+		.pipe(gulp.dest('dist'))
 });

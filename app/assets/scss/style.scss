@@ -1,5 +1,5 @@
-.test {
-	width: percentage(5/7);
-	height: 10px;
-	
-}
+@import "compass";
+@import "compass/css3";
+
+@import "partials/base";
+@import "partials/main";

@@ -5,9 +5,12 @@
   "main": "gulpfile.js",
   "dependencies": {},
   "devDependencies": {
+    "browser-sync": "^2.12.3",
+    "compass-mixins": "^0.12.7",
     "gulp": "^3.9.1",
     "gulp-compass": "^2.1.0",
-    "gulp-sass": "^2.2.0"
+    "gulp-sass": "^2.2.0",
+    "gulp-useref": "^3.0.8"
   },
   "repository": {
     "type": "git",
