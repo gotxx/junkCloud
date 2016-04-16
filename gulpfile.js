@@ -1,7 +1,9 @@
 var gulp = require('gulp'),
 	// sass = require('gulp-sass'),
-	compass = require('gulp-compass')
+	compass = require('gulp-compass'),
 	useref = require('gulp-useref'),
+	uglify = require('gulp-uglify'),
+	gulpIf = require('gulp-if'),
 	browserSync = require('browser-sync').create();
 
 // sass tasks
@@ -44,5 +46,7 @@ gulp.task('browserSync', function() {
 gulp.task('useref', function() {
 	return gulp.src('app/*.html')
 		.pipe(useref())
+		// Minifies only if it's a JavaScript file
+		.pipe(gulpIf('*.js', uglify()))
 		.pipe(gulp.dest('dist'))
 });
