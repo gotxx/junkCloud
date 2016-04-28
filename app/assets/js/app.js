@@ -1,47 +1,27 @@
-console.log("script 1");
 
-var myApp = {
-	mojaWlasciwosc: 'vojadiv',
-	init: function(){
-		this.mojaMetoda();	
+var selectApp = {
+	init: function() {
+		this.selectForm = $('#select-form');
+		this.select = $('#select-inch');
+		this.options = this.select.find('option');
+		this.select.html(this.sortElements(this.options));
+		this.select.val(this.options.first().text());
+
 	},
-	mojaMetoda: function g() {
-		var _mayApp = this;
-		$('.btn').on('click', '.selector', function(event) {
-			event.preventDefault();
-			/* Act on the event */
-			_mayApp.innaMetoda();
+	cloneSortElements: function(colection) {
+		return colection.clone().sort(function(a, b) {
+			return +$(a).text() > +$(b).text();
 		});
 	},
-	jakisObiekt : {
-		wlasciwosc: "123",
-		nastepnaMetoda: function(){
-			myApp.jakisObiekt.mojaMetoda();
-		}
+	sortElements: function(colection) {
+		return colection.sort(function(a, b) {
+			return +$(a).text() > +$(b).text();
+		});
 	}
+
 };
 
-function Person(){
-	var _name="asdasd";
-
-	function fun1(){ fun2()}
-	function fun2(){
-		console.log('fun2')
-	}
-
-	this.m1 = function(){
-		this.m2();
-	};
-
-	this.m2 = function(){
-		console.log('m2');
-	};
-
-	this.f1 = fun1;
-	this.f2 = fun2;
-
-	this.getName = functon f(){
-		console.log(this);
-		return _name;
-	};
-}
+$(function() {
+	console.log(selectApp);
+	selectApp.init();
+});
